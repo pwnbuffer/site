@@ -30,6 +30,7 @@
 
 .aw-popover input {
     background: rgba(8, 8, 8, 0.96);
+    color: #fff;
     border: 1px solid rgba(255, 0, 0, 0.1);
     border-radius: 2px;
     margin: 5px 5px 5px 5px;
