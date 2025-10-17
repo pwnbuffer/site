@@ -23,6 +23,11 @@ import errorPage from "./modules/error.js";
 initDb()
 app.use(routes)
 
+app.head('/app/health/cron_health_check', (req, res) => {
+    res.status(200).json({ you: req.ip, success: true })
+    
+})
+
 app.listen("9999", () => {
     console.log("LISTENING IN PORT 9999: http://0.0.0.0:9999")
 
