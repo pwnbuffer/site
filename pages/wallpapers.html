@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/css-others/wa.css">
+    <title>wallpapers — pwn</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet" />
+    <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
+    <script defer src="/js/zoom_wallpapers.js"></script>
+    <script src="/js/auth_widget.js" defer></script>
+    <script src="/js/glitch.js"></script>
+</head>
+
+<body>
+    <div class="main_container">
+        <header class="header">
+            <div class="left-section">
+                <a href="/" class="menu-link">/home</a>
+                <a href="/p" class="menu-link">/papers</a>
+                <a href="/a/about-us" class="menu-link">/about-us</a>
+                <a href="/w" class="menu-link">/worms</a>
+            </div>
+            <div class="right-section">
+                <span class="glitch-text">pwn@buff3r</span>
+            </div>
+
+        </header>
+
+        <main class="content">
+            <h1 class="pwntitle">~/Wallpapers</h1>
+            <div class="gallery" id="gallery">
+                <p class="loading">Carregando wallpapers...</p>
+            </div>
+            <div id="pwnModal" class="modal">
+                <span class="close">&times;</span>
+                <img class="modal-content" id="imgModal">
+            </div>
+
+
+            <a href="/" class="back-link">← Voltar para a página principal</a>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <span>&copy; 2025 - pwnbuffer.org </span>
+                <span class="footer-separator">|</span>
+                <a href="https://x.com/pwnbff" target="_blank" class="footer-link">[ X ] </a>
+                <span class="footer-separator">|</span>
+                <a href="https://discord.gg/R7sAkd4j9X" target="_blank" class="footer-link">[ Servidor Discord ] </a>
+        </footer>
+    </div>
+
+</body>
+
+<script>
+// Fetch wallpapers from server API and populate the gallery
+document.addEventListener('DOMContentLoaded', async () => {
+    const gallery = document.getElementById('gallery');
+    const modal = document.getElementById('pwnModal');
+    const modalImg = document.getElementById('imgModal');
+
+    function clearGalleryMessage() {
+        const p = gallery.querySelector('.loading') || gallery.querySelector('.error');
+        if (p) p.remove();
+    }
+
+    function showError(msg) {
+        clearGalleryMessage();
+        const err = document.createElement('p');
+        err.className = 'error';
+        err.textContent = msg;
+        gallery.appendChild(err);
+    }
+
+    try {
+        const res = await fetch('/api/wallpapers');
+        if (!res.ok) {
+            throw new Error(`Server returned ${res.status}`);
+        }
+        
+        const items = await res.json();
+        clearGalleryMessage();
+
+        if (!Array.isArray(items) || items.length === 0) {
+            showError('Nenhum wallpaper encontrado.');
+            return;
+        }
+
+        // Create image elements
+        items.forEach(item => {
+            // Expecting each item to have a `slug` property which maps to /f/:slug
+            const img = document.createElement('img');
+            img.src = `/f/${encodeURIComponent(item.slug)}`;
+            img.alt = item.title || item.slug || '';
+            img.loading = 'lazy';
+            img.dataset.slug = item.slug;
+
+            // Attach click handler to open modal
+            img.addEventListener('load', () => {
+                // Click handler do modal
+                img.addEventListener('click', () => {
+                    modal.style.display = 'block';
+                    modalImg.src = img.src;
+                });
+
+                gallery.appendChild(img);
+            
+            });
+
+        });
+    } catch (e) {
+        console.error('Error fetching wallpapers:', e);
+        showError('Erro ao carregar wallpapers. Tente novamente mais tarde.');
+    }
+});
+</script>
+
+</html>

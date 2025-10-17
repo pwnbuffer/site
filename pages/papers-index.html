@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/css-others/p.css">
+    <title>papers — pwn</title>
+    <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet" />
+    <script src="/js/auth_widget.js" defer></script>
+    <script src="/js/glitch.js"></script>
+
+</head>
+
+<body>
+    <div class="main_container">
+        <header class="header">
+            <div class="left-section">
+                <a href="/a/about-us" class="menu-link">/about-us</a>
+                <a href="/w" class="menu-link">/worms</a>
+            </div>
+            <div class="right-section">
+                <span class="glitch-text">pwn@buff3r</span>
+            </div>
+
+        </header>
+
+        <main class="content">
+            <h1 class="pwntitle">~/papers</h1>
+            
+            
+            <div class="list-papers">
+<ul id="articlesContainer"></ul>
+            </div>
+
+
+
+            <a href="/" class="back-link">← Voltar para a página principal</a>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <span>&copy; 2025 - pwnbuffer.org </span>
+                <span class="footer-separator">|</span>
+                <a href="https://x.com/pwnbff" target="_blank" class="footer-link">[ X ] </a>
+                <span class="footer-separator">|</span>
+                <a href="/a/wallpapers" target="_blank" class="footer-link">[ Wallpapers ] </a>
+                <span class="footer-separator">|</span>
+                <a href="https://discord.gg/R7sAkd4j9X" target="_blank" class="footer-link">[ Servidor Discord ] </a>
+        </footer>
+    </div>
+
+</body>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const articlesContainer = document.getElementById('articlesContainer');
+            try {
+                // Fetch de todos os artigos
+                const response = await fetch('/api/articles/all'); // Novo endpoint que retorna todos os artigos
+                if (!response.ok) {
+                    throw new Error('Erro ao carregar artigos.');
+                }
+                const articles = await response.json();
+
+                articlesContainer.innerHTML = ''; // Limpa o placeholder
+
+                if (articles.length === 0) {
+                    articlesContainer.innerHTML = '<p style="text-align: center; color: var(--secondary-text-color);">Nenhum artigo encontrado ainda. Que tal fazer um <a href="/u/papers" style="color: var(--accent-color); text-decoration: none;">upload</a>?</p>';
+                    return;
+                }
+                
+                articles.forEach((article, ind) => {
+                    const tagsHtml = article.tags && article.tags.length > 0
+                        ? `<div class="tags">${article.tags.map(tag => `<a href="#" class="tag">${tag}</a>`).join('')}</div>`
+                        : '';
+
+                    const card = `
+                        <li>${'0x' + Number(ind + 1).toString(16).toUpperCase().padStart(2, '0')} <a href='../p/${article.slug}'>${article.title}</a> — <em>${article.User.userName}</em> <small>(${article.createdAt.split('T')[0]})</small></li>
+                    `;
+                    articlesContainer.insertAdjacentHTML('beforeend', card);
+                });
+
+            } catch (error) {
+                console.error('Erro ao carregar artigos:', error);
+                articlesContainer.innerHTML = '<p style="text-align: center; color: #A70000;">Não foi possível carregar os artigos. Tente novamente mais tarde.</p>';
+            }
+        });
+    </script>
+
+</html>

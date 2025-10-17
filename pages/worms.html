@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/css-others/w.css">
+    <title>worms — pwn</title>
+    <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+    <script src="/js/auth_widget.js" defer></script>
+    <script src="/js/glitch.js"></script>
+</head>
+
+<body>
+    <div class="main_container">
+        <header class="header">
+            <div class="left-section">
+                <a href="/p" class="menu-link">/papers</a>
+                <a href="/a/about-us" class="menu-link">/about-us</a>
+            </div>
+            <div class="right-section">
+                <span class="glitch-text">pwn@buff3r</span>
+            </div>
+        </header>
+
+        <main class="content">
+            <h1 class="pwntitle">~/worms</h1>
+            <div>
+                <div id="authWidget" style="margin-bottom:12px"></div>
+                <ul id="wormsList">
+                    <li>carregando worms...</li>
+                </ul>
+            </div>
+
+            <a href="/" class="back-link">← Voltar para a página principal</a>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <span>&copy; 2025 - pwnbuffer.org </span>
+                <span class="footer-separator">|</span>
+                <a href="https://x.com/pwnbff" target="_blank" class="footer-link">[ X ] </a>
+                <span class="footer-separator">|</span>
+                <a href="/a/wallpapers" class="footer-link">[ Wallpapers ] </a>
+                <span class="footer-separator">|</span>
+                <a href="https://discord.gg/R7sAkd4j9X" target="_blank" class="footer-link">[ Servidor Discord ] </a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            // Fetch worms and render
+            async function fetchWorms() {
+                try {
+                    const r = await fetch('/api/worms')
+                    const j = await r.json()
+                    const ul = document.getElementById('wormsList')
+                    ul.innerHTML = ''
+                    if (!r.ok) {
+                        ul.innerHTML = '<li class="error">Erro ao carregar worms</li>'
+                        return
+                    }
+                    const worms = j.worms || []
+                    if (!worms.length) ul.innerHTML = '<li>(nenhum worm)</li>'
+                    worms.forEach(w => {
+                        const li = document.createElement('li')
+                        li.textContent = w.userName + ' — ' + new Date(w.createdAt).toLocaleDateString()
+                        ul.appendChild(li)
+                    })
+                } catch (e) {
+                    const ul = document.getElementById('wormsList')
+                    ul.innerHTML = '<li class="error">Erro: ' + e.message + '</li>'
+                }
+            }
+
+            fetchWorms()
+        });
+    </script>
+</body>
+
+</html>
