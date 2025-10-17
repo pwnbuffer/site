@@ -58,10 +58,19 @@ routes.get('/w', (req, res) => {
 
 routes.get('/a/about-us', (req, res) => {
     res.sendFile(path.join(__dirname, 'pages', 'about.html'))
+
 })
 
 routes.get('/a/wallpapers', (req, res) => {
     res.sendFile(path.join(__dirname, 'pages', 'wallpapers.html'))
+
+})
+
+routes.head('/app/health/cron_health_check', (req, res) => {
+    console.log("Req HEAD ping to health check from", req.ip)
+    res.setHeader("Success", "yeyeye")
+    res.status(200).json({})
+    
 })
 
 routes.use((req, res) => {
