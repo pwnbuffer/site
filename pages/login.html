@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/css-others/font.css">
+    <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+	<title>Login / Register</title>
+	<style>
+        * {
+	        box-sizing: border-box;
+        }
+
+		body {
+            background-color: #000000;
+			margin: 0;
+			color: #fff;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+		}
+
+		.container {
+			background-color: #131313;
+			padding: 2rem;
+			box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+			width: 300px;
+			text-align: center;
+			border: 1px solid rgba(255, 255, 255, 0.1);
+		}
+
+		h2 {
+			margin-bottom: 1rem;
+			color: #b80000;
+		}
+
+		input {
+			width: 100%;
+			padding: 0.6rem;
+			margin: 0.4rem 0;
+			border: none;
+			background: rgba(255, 255, 255, 0.08);
+			color: #fff;
+			outline: none;
+			transition: background 0.2s;
+		}
+
+		input:focus {
+			background: rgba(255, 255, 255, 0.15);
+		}
+
+		button {
+			width: 100%;
+			margin-top: 0.8rem;
+			padding: 0.6rem;
+			border: none;
+			background: #580000;
+			color: white;
+			font-weight: bold;
+			cursor: pointer;
+			transition: transform 0.2s, box-shadow 0.2s;
+		}
+
+		button:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+		}
+
+		.toggle {
+			margin-top: 1rem;
+			font-size: 0.9rem;
+			color: #aaa;
+			cursor: pointer;
+			transition: color 0.2s;
+		}
+
+		.toggle:hover {
+			color: #b90000;
+		}
+
+		.hidden {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<!-- LOGIN -->
+		<div id="login">
+			<h2>Login</h2>
+			<input type="text" placeholder="Usuário">
+			<input type="password" placeholder="Senha">
+			<button>Entrar</button>
+			<div class="toggle" onclick="toggleForms()">Criar conta</div>
+		</div>
+
+		<!-- REGISTER -->
+		<div id="register" class="hidden">
+			<h2>Registrar</h2>
+			<input type="text" placeholder="Usuário">
+			<input type="password" placeholder="Senha">
+			<button>Registrar</button>
+			<div class="toggle" onclick="toggleForms()">Já tem uma conta? Entrar</div>
+		</div>
+	</div>
+
+	<script>
+		function toggleForms() {
+			document.getElementById('login').classList.toggle('hidden');
+			document.getElementById('register').classList.toggle('hidden');
+		}
+	</script>
+</body>
+</html>

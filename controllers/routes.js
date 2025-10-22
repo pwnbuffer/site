@@ -46,6 +46,11 @@ routes.get('/u/file', requireAuth, verifyWorm, (req, res) => {
 
 });
 
+routes.get('/u/login', (req, res) => {
+    res.sendFile(path.join(__dirname, 'pages', 'login.html'));
+
+});
+
 routes.get('/p', (req, res) => {
     res.sendFile(path.join(__dirname, 'pages', 'papers-index.html'));
 

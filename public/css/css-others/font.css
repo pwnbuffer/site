@@ -1,0 +1,20 @@
+@font-face {
+    font-family: "gohu";
+    src: url("../fonts/gohu.woff2") format("woff2"),
+        url("../fonts/gohu.woff") format("woff"),
+        url("../fonts/gohu.woff") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'gohu', sans-serif !important;
+}
+
+input {
+    font-family: 'gohu', sans-serif !important;
+}
+
+button {
+    font-family: 'gohu', sans-serif !important;
+}
