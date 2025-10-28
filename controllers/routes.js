@@ -71,10 +71,10 @@ routes.get('/a/wallpapers', (req, res) => {
 
 })
 
-routes.head('/app/health/cron_health_check', (req, res) => {
+routes.get('/app/health/cron_health_check', (req, res) => {
     console.log("Req HEAD ping to health check from", req.ip)
     res.setHeader("Success", "yeyeye")
-    res.status(200).json({})
+    res.status(200).json({"msg": "hi :3"})
     
 })
 
