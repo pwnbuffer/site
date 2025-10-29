@@ -86,30 +86,11 @@
 </head>
 <body>
 	<div class="container">
-		<!-- LOGIN -->
 		<div id="login">
 			<h2>Login</h2>
 			<input type="text" placeholder="Usuário">
 			<input type="password" placeholder="Senha">
 			<button>Entrar</button>
-			<div class="toggle" onclick="toggleForms()">Criar conta</div>
 		</div>
-
-		<!-- REGISTER -->
-		<div id="register" class="hidden">
-			<h2>Registrar</h2>
-			<input type="text" placeholder="Usuário">
-			<input type="password" placeholder="Senha">
-			<button>Registrar</button>
-			<div class="toggle" onclick="toggleForms()">Já tem uma conta? Entrar</div>
-		</div>
-	</div>
-
-	<script>
-		function toggleForms() {
-			document.getElementById('login').classList.toggle('hidden');
-			document.getElementById('register').classList.toggle('hidden');
-		}
-	</script>
 </body>
 </html>

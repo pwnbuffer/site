@@ -8,7 +8,6 @@
     <title>papers — pwn</title>
     <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet" />
-    <script src="/js/auth_widget.js" defer></script>
     <script src="/js/glitch.js"></script>
     <script src="/js/newtab.js"></script>
 
@@ -16,19 +15,27 @@
 
 <body>
     <div class="main_container">
-        <header class="header">
-            <div class="left-section">
-                <a href="/a/about-us" class="menu-link">/about-us</a>
-                <a href="/w" class="menu-link">/worms</a>
-            </div>
-            <div class="right-section">
-                <span class="glitch-text">pwn@buff3r</span>
-            </div>
-
-        </header>
 
         <main class="content">
-            <h1 class="pwntitle">~/papers</h1>
+            <pre class="index">
+                                                                                                     
+                                                                                     
+           .--.                   .---.         .--.                   .---.         
+       .---|__|           .-.     |~~~|     .---|__|           .-.     |~~~|         
+    .--|===|--|_          |_|     |~~~|--.--|===|--|_          |_|     |~~~|--.      
+    |  |===|  |'\     .---!~|  .--|   |--|  |===|  |'\     .---!~|  .--|   |--|      
+    |%%|   |  |.'\    |===| |--|%%|   |  |%%|   |  |.'\    |===| |--|%%|   |  |      
+    |%%|   |  |\.'\   |   | |__|  |   |  |%%|   |  |\.'\   |   | |__|  |   |  |      
+    |  |   |  | \  \  |===| |==|  |   |  |  |   |  | \  \  |===| |==|  |   |  |      
+    |  |   |__|  \.'\ |   |_|__|  |~~~|__|  |   |__|  \.'\ |   |_|__|  |~~~|__|      
+    |  |===|--|   \.'\|===|~|--|%%|~~~|--|  |===|--|   \.'\|===|~|--|%%|~~~|--|      
+ ┌──^--^---'--^────`-'`---^-^--^--^---'--^--^---'--^────`-'`---^-^--^--^---'--'─────┐
+ │           [ 0x037knowbuff3r ] > saber de tudo não é saber fazer tudo!            │
+ │ ┌──────────────────────────────────────────────────────────────────────────────┐ │
+ │ │                                                                              │ │
+ └─┤                                                                              ├─┘
+   ▼                                                                              ▼                                                                                 
+            </pre><br>
             
             
             <div class="list-papers">
@@ -77,6 +84,7 @@
                         : '';
 
                     const card = `
+                        
                         <li>${'0x' + Number(ind + 1).toString(16).toUpperCase().padStart(2, '0')} <a href='../p/${article.slug}'>${article.title}</a> — <em>${article.User.userName}</em> <small>(${article.createdAt.split('T')[0]})</small></li>
                     `;
                     articlesContainer.insertAdjacentHTML('beforeend', card);

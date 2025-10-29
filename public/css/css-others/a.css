@@ -23,6 +23,10 @@ body {
     min-height: 100vh;
 }
 
+pre {
+    text-align: center;
+}
+
 .main_container {
     max-width: 900px;
     width: 100%;
@@ -32,6 +36,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.content {
+    padding: 0 15px; 
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box; 
 }
 
 .header {
@@ -116,15 +127,7 @@ body {
     display: inline-block;
 }
 
-.content {
-    display: flex;
-    flex-direction: column;
-    padding: 0 15px; 
-    align-items: flex-start;
-    text-align: left;
-    width: 100%;
-    box-sizing: border-box; 
-}
+
 
 .back-link {
     display: block;
